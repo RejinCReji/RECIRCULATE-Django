@@ -14,3 +14,21 @@ code {
 main {
   min-height: 80vh;
 }
+
+.btn-dark {
+  background-color: #1b1b1b;
+}
+.btn-dark:hover {
+  background-color: #343a40;
+}
+.rating span {
+  margin: 0.1rem;
+}
+
+.card-price {
+  padding-bottom: 1rem;
+  padding-top: 0.25rem;
+}
+.label-wrapper {
+  font-weight: bold !important;
+}

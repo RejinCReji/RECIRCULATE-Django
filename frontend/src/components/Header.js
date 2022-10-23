@@ -1,5 +1,6 @@
 import React from 'react';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 function Header() {
   return (
@@ -7,14 +8,24 @@ function Header() {
       <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-          <Navbar.Brand href="/">RECIRCULATE</Navbar.Brand>
+          <LinkContainer to="/">
+            <Navbar.Brand>RECIRCULATE</Navbar.Brand>
+          </LinkContainer>
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link href="#cart">
-                <i class="fa-solid fa-cart-arrow-down"></i>
-                {'  '}Cart
-              </Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
+              <LinkContainer to="/cart">
+                <Nav.Link>
+                  <i class="fa-solid fa-cart-arrow-down"></i>
+                  {'  '}Cart
+                </Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/post">
+                <Nav.Link>
+                  <i class="fa-solid fa-shop"></i>
+                  {'  '}
+                  Sell
+                </Nav.Link>
+              </LinkContainer>
             </Nav>
           </Navbar.Collapse>
           <Nav>
@@ -25,11 +36,12 @@ function Header() {
               <NavDropdown.Divider />
               <NavDropdown.Item href="#logout">Logout</NavDropdown.Item>
             </NavDropdown> */}
-
-            <Nav.Link eventKey={2} href="#Login">
-              <i class="fa-regular fa-user "></i>
-              {'  '}Login
-            </Nav.Link>
+            <LinkContainer to="Login">
+              <Nav.Link eventKey={2}>
+                <i class="fa-regular fa-user "></i>
+                {'  '}Login
+              </Nav.Link>
+            </LinkContainer>
           </Nav>
         </Container>
       </Navbar>
