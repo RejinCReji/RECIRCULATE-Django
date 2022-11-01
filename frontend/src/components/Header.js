@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
-
+import { MdOutlineSell } from 'react-icons/md';
 function Header() {
   return (
     <header>
@@ -15,13 +15,13 @@ function Header() {
             <Nav className="mr-auto">
               <LinkContainer to="/cart">
                 <Nav.Link>
-                  <i class="fa-solid fa-cart-arrow-down"></i>
+                  <i className="fa-solid fa-cart-arrow-down"></i>
                   {'  '}Cart
                 </Nav.Link>
               </LinkContainer>
               <LinkContainer to="/post">
                 <Nav.Link>
-                  <i class="fa-solid fa-shop"></i>
+                  <MdOutlineSell size={21} />
                   {'  '}
                   Sell
                 </Nav.Link>
@@ -38,7 +38,7 @@ function Header() {
             </NavDropdown> */}
             <LinkContainer to="Login">
               <Nav.Link eventKey={2}>
-                <i class="fa-regular fa-user "></i>
+                <i className="fa-regular fa-user "></i>
                 {'  '}Login
               </Nav.Link>
             </LinkContainer>

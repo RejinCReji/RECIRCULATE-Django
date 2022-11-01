@@ -6,7 +6,10 @@ import Rating from './Rating';
 
 function Product({ product }) {
   return (
-    <Card className="my-2 p-3 rounded product-card" style={{ width: '19rem' }}>
+    <Card
+      className="mx-auto my-2 p-3 rounded product-card"
+      style={{ width: '19rem' }}
+    >
       <Link to={`/product/${product._id}`}>
         <Card.Img src={product.image} />
       </Link>

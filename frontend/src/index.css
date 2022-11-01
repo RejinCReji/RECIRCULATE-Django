@@ -19,7 +19,7 @@ main {
   background-color: #1b1b1b;
 }
 .btn-dark:hover {
-  background-color: #343a40;
+  background-color: #0d6efd;
 }
 .rating span {
   margin: 0.1rem;
@@ -31,4 +31,11 @@ main {
 }
 .label-wrapper {
   font-weight: bold !important;
+}
+.small-container {
+  min-height: 100vh;
+  max-width: 50%;
+}
+.img-thumbnail {
+  height: 5rem;
 }
