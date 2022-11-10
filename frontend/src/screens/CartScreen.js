@@ -73,8 +73,11 @@ function CartScreen() {
                       </Link>
                     </Col>
                     <Col md={2}>₹{item.price}</Col>
-                    <Col md={3}>
-                      <div>
+                    <Col md={4}>
+                      <div
+                        className="d-flex justify-content-between py-2"
+                        style={{ width: '15rem' }}
+                      >
                         <Button
                           onClick={() => updateCartHandler(item, item.qty - 1)}
                           variant="light"
@@ -82,8 +85,10 @@ function CartScreen() {
                           className="Icon-Quantity"
                         >
                           <i className="fas fa-minus-circle"></i>
-                        </Button>{' '}
-                        <span>{item.qty}</span>{' '}
+                        </Button>
+                        <span className="my-auto">
+                          Qty: <strong>{item.qty}</strong>
+                        </span>
                         <Button
                           onClick={() => updateCartHandler(item, item.qty + 1)}
                           variant="light"
@@ -92,16 +97,14 @@ function CartScreen() {
                         >
                           <i className="fas fa-plus-circle"></i>
                         </Button>
+                        <Button
+                          onClick={() => removeItemHandler(item)}
+                          variant="light"
+                          className="Icon-Trash"
+                        >
+                          <i className="fas fa-trash"></i>
+                        </Button>
                       </div>
-                    </Col>
-                    <Col md={1}>
-                      <Button
-                        onClick={() => removeItemHandler(item)}
-                        variant="light"
-                        className="Icon-Trash"
-                      >
-                        <i className="fas fa-trash"></i>
-                      </Button>
                     </Col>
                   </Row>
                 </ListGroup.Item>

@@ -5,7 +5,7 @@ import { MdOutlineSell } from 'react-icons/md';
 function Header() {
   return (
     <header>
-      <Navbar collapseOnSelect expand="md" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="md" bg="primary" variant="dark">
         <Container>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <LinkContainer to="/">

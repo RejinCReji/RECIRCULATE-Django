@@ -5,7 +5,7 @@ function FormContainer({ children }) {
   return (
     <Container>
       <Row className="d-flex justify-content-md-center">
-        <Col xs={12} md={5}>
+        <Col xs={12} md={6}>
           {' '}
           {children}
         </Col>

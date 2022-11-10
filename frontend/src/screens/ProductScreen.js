@@ -78,7 +78,7 @@ function ProductScreen({ match }) {
                   <ListGroup.Item>
                     <Row>
                       <Col className="my-auto">Qty :</Col>
-                      <Col className="my-1" xs="auto">
+                      <Col className="my-1">
                         <Form.Select
                           value={qty}
                           onChange={(e) => setQty(e.target.value)}
