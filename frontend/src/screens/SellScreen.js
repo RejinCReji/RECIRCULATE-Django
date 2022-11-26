@@ -25,7 +25,7 @@ function Sell() {
         <Form
           onSubmit={detailsHandler}
           variant="flush"
-          enctype="multipart/form-data"
+          encType="multipart/form-data"
         >
           <Card className="p-3">
             <Form.Group>

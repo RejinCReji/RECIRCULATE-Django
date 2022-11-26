@@ -66,19 +66,19 @@ function RegisterScreen() {
             className="d-flex justify-content-between mx-auto"
             style={{ width: '40%' }}
           >
-            <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-facebook-f"></i>
+            <button type="button" className="btn btn-link btn-floating mx-1">
+              <i className="fab fa-facebook-f"></i>
             </button>
 
-            <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-google"></i>
+            <button type="button" className="btn btn-link btn-floating mx-1">
+              <i className="fab fa-google"></i>
             </button>
 
-            <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fab fa-twitter"></i>
+            <button type="button" className="btn btn-link btn-floating mx-1">
+              <i className="fab fa-twitter"></i>
             </button>
-            {/* <button type="button" class="btn btn-link btn-floating mx-1">
-              <i class="fa-brands fa-apple"></i>
+            {/* <button type="button" className="btn btn-link btn-floating mx-1">
+              <i className="fa-brands fa-apple"></i>
             </button> */}
             {/* logo to be edited*/}
           </div>

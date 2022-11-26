@@ -33,7 +33,7 @@ function SellersAddressScreen() {
             <Form.Label>Mobile Number</Form.Label>
             <Form.Control
               required
-              as="input"
+              type="number"
               placeholder="10-digit mobile number"
               className="rounded border p-2 mb-3"
             ></Form.Control>
@@ -63,7 +63,7 @@ function SellersAddressScreen() {
               <Form.Label>Pincode</Form.Label>
               <Form.Control
                 required
-                type="input"
+                type="number"
                 className="rounded border p-2 "
                 placeholder="6 digit [0-9] PIN Code"
                 autoComplete="off"

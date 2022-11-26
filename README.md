@@ -15,3 +15,7 @@
    2. Message
    3. Form container for both register and login
 6. Created Store with old version(need to be updated)
+7. Implemented (Not tested with backend) Products-
+   1. reducer
+   2. actions
+   3. constants

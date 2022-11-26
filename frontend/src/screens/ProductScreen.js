@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Col,
   ListGroup,
@@ -8,23 +8,50 @@ import {
   Badge,
   Button,
 } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import Form from 'react-bootstrap/Form';
 import { useNavigate, useParams } from 'react-router-dom';
 import Rating from '../components/Rating';
+import Loader from '../components/Loader';
+import Message from '../components/Message';
 import products from '../products';
+import { listProductDetails } from '../actions/productActions';
 
 function ProductScreen({ match }) {
+  const params = useParams();
+  const dispatch = useDispatch();
+  const productDetails = useSelector((state) => state.productDetails);
+  // const {loading , error, product} = productDetails
+  //commented above due no integration
+  useEffect(() => {
+    dispatch(listProductDetails(params.id));
+  }, []);
+
+  const product = products.find((x) => x._id === params.id); // replace props.match.params and when backend is not there
+
+  // useEffect(() => {
+  //   async function fetchProduct() {
+  //     const { data } = await axios.get(`/api/product/${params.id}`);
+  //     setProduct(data);
+  //   }
+  //   fetchProduct();
+  // }, []);
   const navigate = useNavigate();
   const [qty, setQty] = useState(1);
 
-  const params = useParams();
-  const product = products.find((x) => x._id === params.id);
   const addToCartHandler = () => {
     console.log('ADDED TO CART :', params.id);
     navigate(`/cart/${product._id}/?qty=${qty}`);
   };
   return (
     <div className="mt-3">
+      {/* {loading ? (
+        <Loader />
+      ) : error ? (
+        <Message variant="danger">{error}</Message>
+      ) : (
+        <h3>Real Content</h3>
+      )} */}
       <Row>
         <Col md={6}>
           <Image className="img-fluid" src={product.image} alt={product.name} />
