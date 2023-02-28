@@ -9,11 +9,17 @@ import {
   Row,
 } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import cartItems from '../cartItems';
 import CheckoutSteps from '../components/CheckoutSteps';
 import Message from '../components/Message';
 
 function PlaceOrderScreen() {
+  const cart = useSelector((state) => state.cart);
+  // cart.itemsPrice =cart.cartItems.reduce((acc,item)=> acc+ item.price*item.qty,0).toFixed(2)
+  // cart.shippingPrice = (cart.itemsPrice > 500 ? 0 : 100).toFixed(2)
+  // cart.taxPrice = Number((0.082) * cart.itemsPrice).toFixed(2)
+  // cart.totalPrice = (Number(cart.ItemsPrice) + Number(cart.shippingPrice) + Number(cart.taxPrice)).toFixed(2)
   const price = 10809.73; // sample price
   const placeOrder = () => {
     console.log('Place Order');
@@ -29,12 +35,8 @@ function PlaceOrderScreen() {
               <p className="mx-2">
                 {' '}
                 <strong>Shipping: </strong>
-                TKM , karicode , 691508 , India
-                {/*   Have to add {cart.shippingAddress.Address}, cart.shippingAddress.city} */}
-                {/* {' '}
-                {cart.shippingAddress.pincode}, 
-                {' '}
-                {cart.shippingAddress.country} */}
+                {cart.shippingAddress.address}, {cart.shippingAddress.place}{' '}
+                {cart.shippingAddress.pincode}, {cart.shippingAddress.district}
               </p>
             </ListGroup.Item>
             <ListGroup.Item>
@@ -42,8 +44,7 @@ function PlaceOrderScreen() {
               <p className="mx-2">
                 {' '}
                 <strong>Method: </strong>
-                Paytm
-                {/*   Have to add {cart.paymentMethod} */}
+                {cart.paymentMethod}
               </p>
             </ListGroup.Item>
             <ListGroup.Item>

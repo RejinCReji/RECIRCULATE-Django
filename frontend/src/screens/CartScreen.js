@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Helmet } from 'react-helmet-async';
 import {
   Button,
@@ -9,23 +10,36 @@ import {
   Row,
   Image,
 } from 'react-bootstrap';
-
+// need to change item._id to item.product bcz of keyword in reducer
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import cartItems from '../cartItems';
 import Loader from '../components/Loader';
 import Message from '../components/Message';
+import { addToCart, removeFromCart } from '../actions/cartActions';
 function CartScreen() {
   const params = useParams();
   const { search } = useLocation();
   const productId = params.id;
+
   const qty = new URLSearchParams(search).get('qty');
+  const dispatch = useDispatch();
+  useEffect(() => {
+    if (productId) {
+      dispatch(addToCart(productId, qty));
+    }
+  }, [dispatch, productId, qty]);
+  const cart = useSelector((state) => state.cart);
+  // const { cartItems } = cart;
+
   const navigate = useNavigate();
-  const updateCartHandler = (item, qty) => {
-    console.log('Item Updated');
+  const updateCartHandler = (id, updatedQty) => {
+    // dispatch(addToCart(id, updatedQty));
+    console.log('Item Updated : ', updatedQty);
   };
-  const removeItemHandler = () => {
-    console.log('Item Deleted');
+  const removeItemHandler = (id) => {
+    // dispatch(removeFromCart(id));
+    console.log('Item Deleted :', id);
   };
   const checkOutHandler = () => {
     navigate('/login?redirect=shipping');
@@ -49,7 +63,7 @@ function CartScreen() {
               return (
                 <ListGroup.Item
                   className="border border-secondary rounded my-3"
-                  key={item._id}
+                  key={item._id} // need to change to item.product bcz of keyword in reducer
                 >
                   <Row className="align-items-center">
                     <Col md={2}>
@@ -79,7 +93,9 @@ function CartScreen() {
                         style={{ width: '15rem' }}
                       >
                         <Button
-                          onClick={() => updateCartHandler(item, item.qty - 1)}
+                          onClick={() =>
+                            updateCartHandler(item._id, item.qty - 1)
+                          }
                           variant="light"
                           disabled={item.quantity === 1}
                           className="Icon-Quantity"
@@ -98,7 +114,7 @@ function CartScreen() {
                           <i className="fas fa-plus-circle"></i>
                         </Button>
                         <Button
-                          onClick={() => removeItemHandler(item)}
+                          onClick={() => removeItemHandler(item._id)}
                           variant="light"
                           className="Icon-Trash"
                         >

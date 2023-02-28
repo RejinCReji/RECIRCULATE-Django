@@ -5,7 +5,7 @@ const cartItems = [
     image: '/images/airpods.jpg',
     price: 89.99,
     countInStock: 10,
-    qty: 6,
+    qty: 10,
   },
   {
     _id: '2',
@@ -13,7 +13,7 @@ const cartItems = [
     image: '/images/phone.jpg',
     price: 599.99,
     countInStock: 7,
-    qty: 4,
+    qty: 2,
   },
   {
     _id: '3',

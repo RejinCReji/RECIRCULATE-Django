@@ -1,13 +1,24 @@
 import React, { useState } from 'react';
 import { Button, Card, Col, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import CheckoutSteps from '../components/CheckoutSteps';
 import FormContainer from '../components/FormContainer';
+import { savePaymentMethod } from '../actions/cartActions';
 function PaymentScreen() {
   const navigate = useNavigate();
+  const cart = useSelector((state) => state.cart);
+  const { shippingAddress } = cart;
+  const dispatch = useDispatch();
+
+  if (!shippingAddress.address) {
+    navigate('/shipping');
+  }
+
   const [paymentMethod, SetPaymentMethod] = useState('Paytm');
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(savePaymentMethod(paymentMethod));
     console.log('Submitted');
     navigate('/place-order');
   };

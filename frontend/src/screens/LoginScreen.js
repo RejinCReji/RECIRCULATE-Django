@@ -1,20 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Button, Form } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { login } from '../actions/userActions';
+import Message from '../components/Message';
+import Loader from '../components/Loader';
 
 function LoginScreen() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const submitHandler = (e) => {
-    e.preventDefault();
-    console.log('submitted');
-  };
-  const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get('redirect');
   const redirect = redirectInUrl ? redirectInUrl : '/';
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const userLogin = useSelector((state) => state.userLogin);
+  const { error, loading, userInfo } = userLogin;
+
+  useEffect(() => {
+    if (userInfo) {
+      navigate(redirect);
+    }
+  }, [userInfo, redirect]);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    dispatch(login(email, password));
+    console.log('submitted');
+  };
 
   return (
     <FormContainer>
@@ -22,6 +39,8 @@ function LoginScreen() {
         <title>Login</title>
       </Helmet>
       <h1 className="text-center mt-5">SIGN IN</h1>
+      {error && <Message variant='danger'>{error}</Message>}
+      {loading && <Loader/>}
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="email">
           <Form.Label>Email Address</Form.Label>
@@ -60,7 +79,10 @@ function LoginScreen() {
         <div className="text-center">
           <p>
             Not a member?{' '}
-            <Link style={{ textDecoration: 'none' }} to="/signup">
+            <Link
+              style={{ textDecoration: 'none' }}
+              to={redirect ? `/signup?redirect=${redirect}` : '/signup'}
+            >
               Create your account
             </Link>
           </p>

@@ -107,6 +107,7 @@ function ProductScreen({ match }) {
                       <Col className="my-auto">Qty :</Col>
                       <Col className="my-1">
                         <Form.Select
+                          className="px-3"
                           value={qty}
                           onChange={(e) => setQty(e.target.value)}
                         >
